@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Hackeo - PVZ.exe</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: flicker 0.1s infinite;
+            padding: 20px;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .virus-message {
+            font-size: 24px;
+            margin: 10px;
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px lime, 0 0 10px lime; }
+            100% { text-shadow: 0 0 20px lime, 0 0 30px lime; }
+        }
+        .loading {
+            font-size: 30px;
+            margin-top: 20px;
+        }
+        .signature {
+            font-size: 32px;
+            margin-top: 30px;
+            display: none; /* Oculta la firma inicialmente */
+        }
+        @media (max-width: 600px) {
+            .virus-message {
+                font-size: 20px;
+            }
+            .loading {
+                font-size: 24px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .signature {
+                font-size: 24px; /* Ajusta el tamaño de la firma en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HACKING IN PROGRESS...</h1>
+        <div class="virus-message">Infectando PVZ.exe...</div>
+        <div class="loading">Cargando datos...</div>
+        <div class="progress"></div>
+        <div class="signature">FRD</div>
+    </div>
+
+    <script>
+        const loadingMessage = document.querySelector('.loading');
+        const signature = document.querySelector('.signature');
+        let progress = 0;
+
+        const interval = setInterval(() => {
+            if (progress >= 100) {
+                clearInterval(interval);
+                loadingMessage.innerHTML = 'Infección completada.';
+                setTimeout(() => {
+                    loadingMessage.innerHTML = 'Datos encriptados...';
+                    setTimeout(() => {
+                        // Muestra la firma
+                        signature.style.display = 'block';
+                        signature.style.animation = 'glow 1s infinite alternate'; // Añade un efecto de brillo
+                        // Cierra la página después de 3 segundos
+                        setTimeout(() => {
+                            window.close();
+                        }, 3000);
+                    }, 2000);
+                }, 2000);
+            } else {
+                progress += 10;
+                loadingMessage.innerHTML = `Cargando datos... ${progress}%`;
+            }
+        }, 500);
+    </script>
+</body>
+</html>
